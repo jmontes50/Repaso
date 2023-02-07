@@ -1,0 +1,92 @@
+// Crear una función map que acepte un array y un callback y que:
+// por cada elemento del array ejecute el callback pasándole dicho elemento como argumento
+// obtenga el resultado
+// lo pushee a un nuevo array
+// devuelva el array final con el resultado de cada una de las llamadas al callback.
+// Ejemplo:
+
+//1. Casi todo es referenciable en JS, Clases
+/** 
+const map = (array, callback) => {
+    // for(let i = 0; i < array.length; i++){}
+    let arrTmp = []
+    for(let item of array){
+        // console.log(callback(item))
+        const resultado = callback(item)
+        arrTmp.push(resultado)
+    }
+    return arrTmp
+}
+
+const numeros = [1, 2, 3]
+// const duplicar = x => x * 2
+const duplicar = (x) => {
+    return x * 2;
+}
+// console.log(map(numeros, duplicar)) // [2, 4, 6]
+
+console.log(numeros.map(duplicar))
+
+*/
+
+// Crear una función filter que acepte un array y un callback y que:
+// por cada elemento del array ejecute el callback pasándole dicho elemento como argumento
+// si dicho callback devuelve true, pushea el elemento a un nuevo array
+// devuelva el array final con los elementos que pasaron el "filtro".
+// Ejemplo:
+
+/** 
+//2. parámetro o variable creada dentro de una función solo existe dentro de esa función -> ambito o scope
+const filter = (array, callback) => {
+    //filter no sabe que callback es una función ni siquiera saber exactamente que hace
+    // for(let num of array){
+    //     //con los () indicamos que es una función
+    //     console.log(callback(num))
+    // }
+    let arrTmp = []
+    for(let i = 0; i < array.length; i++){
+        // console.log(callback(array[i]))
+        let result = callback(array[i]) //boolean
+        if(result){
+            arrTmp.push(array[i])
+        }
+    }
+    return arrTmp;
+}
+
+const numeros = [10, 2, 3, 40, 33, 50]
+// const multiploDe10 = x => x % 10 === 0
+const multiploDe10 = (x) => {
+    return x % 10 === 0; //boolean
+}
+console.log(filter(numeros, multiploDe10)) // [10, 40, 50]
+
+*/
+
+// Crear una función every que acepte un array y un callback y que:
+// por cada elemento del array ejecute el callback pasándole dicho elemento como argumento
+// devuelva true si todas las llamadas al callback devolvieron true
+// Ejemplo:
+
+const every = (array, callback) => {
+    // let arrTmp = []
+    let valido = true;
+   for(let i = 0; i < array.length; i++){
+        let resultado = callback(array[i])
+        valido =  valido === resultado
+   }
+   return valido
+}
+
+const numeros = [10, 2, 3, 40, 33, 50]
+// const multiploDe10 = x => x % 10 === 0
+const multiploDe10 = (x) => {
+    return x % 10 === 0 //boolean
+}
+// const esPositivo = x => x >= 0
+const esPositivo = (x) => {
+    return x >= 0 //boolean
+}
+
+console.log(every(numeros, multiploDe10)) // false
+console.log(every(numeros, esPositivo)) // true
